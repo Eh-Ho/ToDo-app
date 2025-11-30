@@ -1,13 +1,13 @@
 global.config = require('./api/config');
 const express = require('express');
 
+const APIRouter = require(`${config.path.routes}`);
 
 
-const router = express.Router();
 
 const app = express();
 
-app.use('/', router);
+app.use('/api', APIRouter);
 
 app.listen(config.port,()=>{
     console.log(`server running on port ${config.port}`);
