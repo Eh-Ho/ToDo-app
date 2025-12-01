@@ -9,6 +9,8 @@ const app = express();
 
 app.use('/api', APIRouter);
 
+
+
 app.listen(config.port,()=>{
     console.log(`server running on port ${config.port}`);
 });
