@@ -15,7 +15,6 @@ const app = express();
 
 app.use('/api', APIRouter);
 
-console.log(process.env);
 
 const port = process.env.SERVER_LISTENING_PORT;
 app.listen(port,()=>{
