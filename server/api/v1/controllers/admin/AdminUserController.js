@@ -18,21 +18,20 @@ module.exports = new class AdminUserController  {
 
     createUser = async (req, res) => {
         // TODO: dto implementation
-        const userInfo = req.body;
-
+        const userBody = req.body;
         res.status(StatusCodes.OK)
             .json({message : ReasonPhrases.OK,
-            data : await UserService.createUser(userInfo)
+            data : await UserService.createUser(userBody)
         });
     };
 
     updateUser = async (req, res) => {
         // TODO: dto implementation
-        const userInfo = req.body;
+        const userBody = req.body;
         
         res.status(StatusCodes.OK)
             .json({message : ReasonPhrases.OK,
-            data : await UserService.updateUser(userInfo, req.params.userId)
+            data : await UserService.updateUser(userBody, req.params.userId)
         });
     };
     deleteUser = async (req, res) => {

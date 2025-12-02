@@ -3,10 +3,10 @@ const Schema = mongoose.Schema;
 
 
 const userSchema = new Schema ({
-    userName : {type : String, required : true},
-    userEmail : {type : String, required : true, unique : true},
-    userPassword :{type : String, required : true},
-    userRole : {type : String, required : true, enum : ['admin', 'user'], default : 'user'},
+    name : {type : String, required : true},
+    email : {type : String, required : true, unique : true},
+    password :{type : String, required : true},
+    role : {type : String, required : true, enum : ['admin', 'user'], default : 'user'},
 },{timestamps : true});
 
 const User = mongoose.model('User', userSchema);
