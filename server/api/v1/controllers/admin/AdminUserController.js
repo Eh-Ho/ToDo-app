@@ -26,9 +26,9 @@ module.exports = new class AdminUserController  {
 
     createUser = async (req, res, next) => {
         try{
+            const userBody = createDTO(req.body);
             const message = ReasonPhrases.OK;
             const data = await UserService.createUser(userBody);
-            const userBody = createDTO(req.body);
             res.status(StatusCodes.OK).json({message, data});
         }catch(error){
             next(error);
@@ -38,9 +38,9 @@ module.exports = new class AdminUserController  {
 
     updateUser = async (req, res, next) => {
         try{
+            const userBody = updateDTO(req.body);       
             const message = ReasonPhrases.OK
             const data = await UserService.updateUser(userBody, req.params.userId);
-            const userBody = updateDTO(req.body);       
             res.status(StatusCodes.OK).json({message, data});
         }catch(error){
             next(error);

@@ -25,9 +25,9 @@ module.exports = new class AdminTodoController {
 
     createTodo = async (req, res, next) => {
         try{
+            const todoBody = createDTO(req.body);
             const message = ReasonPhrases.OK;
             const data =  await TodoService.createTodo(todoBody, req.params.userId);
-            const todoBody = createDTO(req.body);
             res.status(StatusCodes.OK).json({message, data});
         }catch(error){
             next(error);
@@ -36,9 +36,9 @@ module.exports = new class AdminTodoController {
 
     updateTodo = async (req, res, next) => {
         try{
+            const todoBody = updateDTO(req.body);
             const message = ReasonPhrases.OK;
             const data = await TodoService.updateTodo(todoBody, req.params.todoId);
-            const todoBody = updateDTO(req.body);
             res.status(StatusCodes.OK).json({message, data});
         }catch(error){
             next(error);
