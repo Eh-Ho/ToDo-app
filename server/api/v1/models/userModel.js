@@ -7,7 +7,6 @@ const userSchema = new Schema ({
     userEmail : {type : String, required : true, unique : true},
     userPassword :{type : String, required : true},
     userRole : {type : String, required : true, enum : ['admin', 'user'], default : 'user'},
-    userTodos : [{type : Schema.Types.ObjectId, ref : 'Todo'}],    
 },{timestamps : true});
 
 const User = mongoose.model('User', userSchema);
