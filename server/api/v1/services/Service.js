@@ -1,5 +1,5 @@
-const User = require(`${config.path.models}/userModel`);
-const Todo = require(`${config.path.models}/todoModel`);
+const User = require('../models/userModel');
+const Todo = require('../models/todoModel');
 
 
 

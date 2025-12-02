@@ -1,7 +1,6 @@
-global.config = require('./api/config');
 const express = require('express');
 const mongoose = require('mongoose');
-const APIRouter = require(`${config.path.routes}`);
+const APIRouter = require('./api/v1/routes/index');
 const bodyParser = require('body-parser')
 
 const mongooseUri = process.env.MONGO_URI;

@@ -1,44 +1,44 @@
-const UserService = require(`${config.path.services}/UserService`);
+const UserService = require('../../services/UserService');
 const {StatusCodes, ReasonPhrases} = require('http-status-codes');
 
 module.exports = new class AdminUserController  {
-    async getAllUsers (req, res) {
+    getAllUsers = async (req, res) => {
         res.status(StatusCodes.OK)
             .json({message : ReasonPhrases.OK,
-            data : UserService.getAllUsers()
+            data : await UserService.getAllUsers()
         });
     };
 
-    async getUser (req, res) {
+    getUser = async (req, res) => {
         res.status(StatusCodes.OK)
             .json({message : ReasonPhrases.OK,
-            data : UserService.getUser()
+            data : await UserService.getUser(req.params.userId)
         });
     };
 
-    async createUser (req, res) {
+    createUser = async (req, res) => {
         // TODO: dto implementation
-        const newUser = req.body;
+        const userInfo = req.body;
+
+        res.status(StatusCodes.OK)
+            .json({message : ReasonPhrases.OK,
+            data : await UserService.createUser(userInfo)
+        });
+    };
+
+    updateUser = async (req, res) => {
+        // TODO: dto implementation
+        const userInfo = req.body;
         
         res.status(StatusCodes.OK)
             .json({message : ReasonPhrases.OK,
-            data : UserService.createUser(newUser)
+            data : await UserService.updateUser(userInfo, req.params.userId)
         });
     };
-
-    async updateUser (req, res) {
-        // TODO: dto implementation
-        const updatedUser = req.body;
-        
+    deleteUser = async (req, res) => {
         res.status(StatusCodes.OK)
             .json({message : ReasonPhrases.OK,
-            data : UserService.updateUser(updatedUser, req.params.userId)
-        });
-    };
-    async deleteUser (req, res) {
-        res.status(StatusCodes.OK)
-            .json({message : ReasonPhrases.OK,
-            data : UserService.deleteUser(req.params.userId)
+            data : await UserService.deleteUser(req.params.userId)
         });
     };
 

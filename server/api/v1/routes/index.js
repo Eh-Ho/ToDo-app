@@ -1,6 +1,5 @@
 const express  = require('express');
-const isAuthenticated = require(`${config.path.middlewares}/isAuthenticated`);
-const isAdmin = require(`${config.path.middlewares}/isAdmin`);
+const {isAdmin, isAuthenticated} = require('../middlewares');
 const APIRouter = express.Router();
 
 // routers
