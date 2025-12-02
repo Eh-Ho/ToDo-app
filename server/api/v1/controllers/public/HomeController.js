@@ -1,5 +1,5 @@
 
 
 module.exports = new class HomeController {
-    async getDashInfo () {};
+    getDashInfo = async(req, res, next) => {};
 };

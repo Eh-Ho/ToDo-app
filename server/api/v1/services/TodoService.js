@@ -11,7 +11,8 @@ module.exports = new class TodoService extends Service {
     };
     async getUserTodos (userId) {
         try{
-            const userTodos = await this.model.User.findById(userId);
+            const userTodos = await this.model.Todo.find({userId});
+            //TODO handle 404 error
             if(userTodos) return userTodos;
         }catch (error) {
             throw error;
@@ -25,7 +26,7 @@ module.exports = new class TodoService extends Service {
             throw error;
         };
     };
-    
+
     async updateTodo (todoBody, todoId) {
         try{
             const updatedTodo = await this.model.Todo.findByIdAndUpdate(todoId, todoBody, {new : true});
@@ -42,4 +43,5 @@ module.exports = new class TodoService extends Service {
             throw error;
         };
     };
+    
 };

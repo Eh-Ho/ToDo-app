@@ -1,8 +1,6 @@
 
 
 module.exports = new class ProfileController {
-    async getProfile () {
-
-    };
-    async updateProfile () {};
+    getProfile = async(req, res, next) => {};
+    updateProfile = async(req, res, next) => {};
 };

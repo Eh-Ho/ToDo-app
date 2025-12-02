@@ -13,6 +13,7 @@ module.exports = new class UserService extends Service {
     async getUser (userId) {
         try{
             const user = await this.model.User.findById(userId);
+            //TODO handle 404 error
             if(user) return user;
         }catch(error){
             throw error

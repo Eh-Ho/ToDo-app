@@ -1,44 +1,60 @@
 const UserService = require('../../services/UserService');
 const {StatusCodes, ReasonPhrases} = require('http-status-codes');
+const {createDTO, updateDTO} = require('../../DTOs/userDTO');
 
 module.exports = new class AdminUserController  {
-    getAllUsers = async (req, res) => {
-        res.status(StatusCodes.OK)
-            .json({message : ReasonPhrases.OK,
-            data : await UserService.getAllUsers()
-        });
+    getAllUsers = async (req, res, next) => {
+        try{
+            const message = ReasonPhrases.OK;
+            const data = await UserService.getAllUsers();
+            res.status(StatusCodes.OK).json({message, data});
+        }catch(error){
+            next(error);
+        };
     };
 
-    getUser = async (req, res) => {
-        res.status(StatusCodes.OK)
-            .json({message : ReasonPhrases.OK,
-            data : await UserService.getUser(req.params.userId)
-        });
-    };
-
-    createUser = async (req, res) => {
-        // TODO: dto implementation
-        const userBody = req.body;
-        res.status(StatusCodes.OK)
-            .json({message : ReasonPhrases.OK,
-            data : await UserService.createUser(userBody)
-        });
-    };
-
-    updateUser = async (req, res) => {
-        // TODO: dto implementation
-        const userBody = req.body;
+    getUser = async (req, res, next) => {
+        try{
+            const message = ReasonPhrases.OK;
+            const data = await UserService.getUser(req.params.userId);
+            res.status(StatusCodes.OK).json({message, data});
+        }catch(error){
+            next(error);
+        };
         
-        res.status(StatusCodes.OK)
-            .json({message : ReasonPhrases.OK,
-            data : await UserService.updateUser(userBody, req.params.userId)
-        });
     };
-    deleteUser = async (req, res) => {
-        res.status(StatusCodes.OK)
-            .json({message : ReasonPhrases.OK,
-            data : await UserService.deleteUser(req.params.userId)
-        });
+
+    createUser = async (req, res, next) => {
+        try{
+            const message = ReasonPhrases.OK;
+            const data = await UserService.createUser(userBody);
+            const userBody = createDTO(req.body);
+            res.status(StatusCodes.OK).json({message, data});
+        }catch(error){
+            next(error);
+        };
+        
+    };
+
+    updateUser = async (req, res, next) => {
+        try{
+            const message = ReasonPhrases.OK
+            const data = await UserService.updateUser(userBody, req.params.userId);
+            const userBody = updateDTO(req.body);       
+            res.status(StatusCodes.OK).json({message, data});
+        }catch(error){
+            next(error);
+        };
+    };
+
+    deleteUser = async (req, res, next) => {
+        try{
+            const message = ReasonPhrases.OK
+            const data = await UserService.deleteUser(req.params.userId);
+            res.status(StatusCodes.OK).json({message, data});
+        }catch(error){
+            next(error);
+        };
     };
 
 };
