@@ -2,14 +2,28 @@ const express = require('express');
 const mongoose = require('mongoose');
 const APIRouter = require('./api/v1/routes/index');
 const bodyParser = require('body-parser')
+const User = require('./api/v1/models/userModel');
+const Todo = require('./api/v1/models/todoModel');
+
+
 
 const mongooseUri = process.env.MONGO_URI;
 
+// db models sync
+User.syncIndexes().then(() => {
+    console.log('User Indexes are now synced!');
+});
+Todo.syncIndexes().then(() => {
+    console.log('Todo Indexes are now synced!');
+});
+
+// db connection
 mongoose.connect(mongooseUri).then(()=>{
     console.log('connected to mongodb');
 }).catch((err)=>{
     console.log(err);
 });
+
 
 const app = express();
 

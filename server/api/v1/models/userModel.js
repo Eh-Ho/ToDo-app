@@ -7,25 +7,28 @@ const userSchema = new Schema ({
     email : {type : String, required : true, unique : true},
     password :{type : String, required : true},
     role : {type : String, required : true, enum : ['admin', 'user'], default : 'user'},
-},{timestamps : true});
+},{timestamps : true, toJSON:{
+    transform : function(doc, ret) {
+      delete ret.password;
+      delete ret.__v; 
+      return ret;
+  }
+}});
 
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function () {
     if (!this.isModified('password')) {
-      return next();
+      return;
     }
   
-    try {
-      const saltRounds = process.env.BCRYPT_SALT;
-      const hash = await bcrypt.hash(this.password, saltRounds);
-      this.password = hash;
-      next();
-    } catch (err) {
-      next(err);
-    }
+
+    const saltRounds = Number(process.env.BCRYPT_SALT);
+    const hash = await bcrypt.hash(this.password, saltRounds)
+    this.password = hash;
+
   });
   
   userSchema.methods.comparePassword = async function (candidatePassword) {
-    return bcrypt.compare(candidatePassword, this.password);
+    return await bcrypt.compare(candidatePassword, this.password);
   };
   
 const User = mongoose.model('User', userSchema);
