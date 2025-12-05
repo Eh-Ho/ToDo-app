@@ -9,8 +9,8 @@ module.exports = (req, res, next) => {
     }
 
     if(!allowedRoles.includes(req.user.role)){
-        res.status(StatusCodes.FORBIDDEN).json({message : ReasonPhrases.FORBIDDEN});
+        return res.status(StatusCodes.FORBIDDEN).json({message : ReasonPhrases.FORBIDDEN});
     }
-    
+
     next();
 };
