@@ -7,6 +7,7 @@ const userSchema = new Schema ({
     email : {type : String, required : true, unique : true},
     password :{type : String, required : true},
     role : {type : String, required : true, enum : ['admin', 'user'], default : 'user'},
+    refreshTokens : {type : [String], default : []},
 },{timestamps : true, toJSON:{
     transform : function(doc, ret) {
       delete ret.password;
