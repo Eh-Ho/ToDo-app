@@ -4,7 +4,7 @@ const APIRouter = require('./api/v1/routes/index');
 const bodyParser = require('body-parser')
 const User = require('./api/v1/models/userModel');
 const Todo = require('./api/v1/models/todoModel');
-
+const {errorHandler} = require('./api/v1/middlewares');
 
 
 const mongooseUri = process.env.MONGO_URI;
@@ -32,7 +32,7 @@ app.use(bodyParser.urlencoded())
 app.use(bodyParser.json())
 
 app.use('/api', APIRouter);
-
+app.use(errorHandler);
 
 const port = process.env.SERVER_LISTENING_PORT;
 app.listen(port,()=>{
