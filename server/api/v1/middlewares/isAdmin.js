@@ -1,15 +1,16 @@
 const{StatusCodes, ReasonPhrases} = require('http-status-codes');
+const AppError = require('../../../utils/AppError');
 
 
 module.exports = (req, res, next) => {
     allowedRoles = ['admin'];
 
     if (!req.user) {
-        return res.status(StatusCodes.UNAUTHORIZED).json({ message: 'Authentication required' });
+        return next(new AppError(ReasonPhrases.UNAUTHORIZED, StatusCodes.UNAUTHORIZED))
     }
 
     if(!allowedRoles.includes(req.user.role)){
-        return res.status(StatusCodes.FORBIDDEN).json({message : ReasonPhrases.FORBIDDEN});
+        return next(new AppError(ReasonPhrases.FORBIDDEN, StatusCodes.FORBIDDEN))
     }
 
     next();

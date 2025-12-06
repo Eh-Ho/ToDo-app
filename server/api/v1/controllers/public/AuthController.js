@@ -1,6 +1,7 @@
 const AuthService = require('../../services/AuthService');
 const {StatusCodes, ReasonPhrases} = require('http-status-codes');
 const {loginDTO, signUpDTO} = require('../../DTOs/authDTO');
+const AppError = require('../../../../utils/AppError');
 
 module.exports = new class AuthController {
     login =  async(req, res, next) => {
@@ -50,7 +51,9 @@ module.exports = new class AuthController {
     refresh = async(req, res, next)=>{
         try{
             const cookies = req.cookies;
-            // if (!cookies?.jwt) error 401
+            if (!cookies?.jwt) {
+                throw new AppError('Refresh token missing', StatusCodes.UNAUTHORIZED);
+            }
             const data = await AuthService.refresh(cookies.jwt);
             res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true });
             res.cookie('jwt', data.newRefreshToken, { 

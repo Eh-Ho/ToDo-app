@@ -1,15 +1,20 @@
 const Service = require("./Service");
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const AppError = require('../../../utils/AppError');
+const {StatusCodes, ReasonPhrases} = require('http-status-codes');
 
 module.exports = new class AuthService extends Service{
 
     login = async(loginBody) => {
         try{
             const user = await this.model.User.findOne({email : loginBody.email});
-            // if(!user) {401} 
+            if(!user) {
+                throw new AppError('Invalid credentials', StatusCodes.UNAUTHORIZED);
+            } 
             const isMatch = await user.comparePassword(loginBody.password);
-            // if(!isMatch) {401}
+            if(!isMatch) {
+                throw new AppError('Invalid credentials', StatusCodes.UNAUTHORIZED);
+            }
             const payload = {id:user._id, role:user.role};
             const newAccessToken =  jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXP });
             const newRefreshToken =  jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, {expiresIn : process.env.REFRESH_TOKEN_EXP});
@@ -34,7 +39,9 @@ module.exports = new class AuthService extends Service{
     signup = async(signUpBody) => {
         try{
             const existingUser = await this.model.User.findOne({email : signUpBody.email});
-            // if(existingUser) return 
+            if(existingUser) {
+                throw new AppError('Email already in use', StatusCodes.CONFLICT);
+            } 
             const newUser = new this.model.User(signUpBody);
             await newUser.save();
             return newUser;
@@ -49,8 +56,8 @@ module.exports = new class AuthService extends Service{
             try {
                 decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
               } catch (err) {
-                // error 401
-              }
+                throw new AppError('Invalid or expired refresh token', StatusCodes.UNAUTHORIZED);
+            }
             const user = await this.model.User.findOne({refreshTokens : refreshToken});
 
             if(!user){
@@ -59,7 +66,7 @@ module.exports = new class AuthService extends Service{
                     hackedUser.refreshTokens = [];
                     await hackedUser.save();
                 }
-                // error 403
+                throw new AppError('Forbidden', StatusCodes.FORBIDDEN);
             }
 
             const remainingRefreshTokens = user.refreshTokens.filter((rt)=>rt != refreshToken);
@@ -67,7 +74,7 @@ module.exports = new class AuthService extends Service{
             if(user._id.toString() !== decoded.id){
                 user.refreshTokens = remainingRefreshTokens;
                 await user.save()
-                // error 403
+                throw new AppError('Forbidden', StatusCodes.FORBIDDEN);
             }
             const payload = {id:user._id, role:user.role};
             const newAccessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: process.env.ACCESS_TOKEN_EXP });
