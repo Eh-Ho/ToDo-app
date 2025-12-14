@@ -1,5 +1,3 @@
-
-
-module.exports = new class HomeController {
-    getDashInfo = async(req, res, next) => {};
-};
+module.exports = new (class HomeController {
+  getDashInfo = async (req, res, next) => {};
+})();
