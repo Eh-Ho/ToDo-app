@@ -3,7 +3,7 @@ const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { createDTO, updateDTO } = require("../../DTOs/userDTO");
 
 module.exports = new (class AdminUserController {
-  getAllUsers = async (req, res, next) => {
+  getAll = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
       const data = await UserService.getAll();
@@ -13,7 +13,7 @@ module.exports = new (class AdminUserController {
     }
   };
 
-  getUser = async (req, res, next) => {
+  getOne = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
       const data = await UserService.getOne(req.params.userId);
@@ -23,7 +23,7 @@ module.exports = new (class AdminUserController {
     }
   };
 
-  createUser = async (req, res, next) => {
+  create = async (req, res, next) => {
     try {
       const userBody = createDTO(req.body);
       const message = ReasonPhrases.OK;
@@ -34,7 +34,7 @@ module.exports = new (class AdminUserController {
     }
   };
 
-  updateUser = async (req, res, next) => {
+  update = async (req, res, next) => {
     try {
       const userBody = updateDTO(req.body);
       const message = ReasonPhrases.OK;
@@ -45,7 +45,7 @@ module.exports = new (class AdminUserController {
     }
   };
 
-  deleteUser = async (req, res, next) => {
+  delete = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
       const data = await UserService.delete(req.params.userId);

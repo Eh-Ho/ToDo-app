@@ -4,25 +4,26 @@ const adminRouter = express.Router();
 
 adminRouter
   .route("/users")
-  .get(AdminUserController.getAllUsers)
-  .post(AdminUserController.createUser);
+  .get(AdminUserController.getAll)
+  .post(AdminUserController.create);
 
 adminRouter
   .route("/users/:userId")
-  .get(AdminUserController.getUser)
-  .put(AdminUserController.updateUser)
-  .delete(AdminUserController.deleteUser);
+  .get(AdminUserController.getOne)
+  .put(AdminUserController.update)
+  .delete(AdminUserController.delete);
 
-adminRouter.route("/todos").get(AdminTodoController.getAllTodos);
+adminRouter.route("/todos").get(AdminTodoController.getAll);
 
 adminRouter
   .route("/users/:userId/todos")
   .get(AdminTodoController.getUserTodos)
-  .post(AdminTodoController.createTodo);
+  .post(AdminTodoController.create);
 
 adminRouter
   .route("/todos/:todoId")
-  .put(AdminTodoController.updateTodo)
-  .delete(AdminTodoController.deleteTodo);
+  .get(AdminTodoController.getOne)
+  .put(AdminTodoController.update)
+  .delete(AdminTodoController.delete);
 
 module.exports = adminRouter;

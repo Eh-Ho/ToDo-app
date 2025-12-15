@@ -3,24 +3,24 @@ const { ReasonPhrases, StatusCodes } = require("http-status-codes");
 const AppError = require("../../../utils/AppError");
 const { default: mongoose } = require("mongoose");
 module.exports = new (class UserService extends Service {
-  async getAll() {
+  getAll = async () => {
     const allUsers = await this.model.User.find({});
     if (allUsers) return allUsers;
-  }
+  };
 
-  async getOne(userId) {
+  getOne = async (userId) => {
     const user = await this.model.User.findById(userId);
     if (!user)
       throw new AppError(ReasonPhrases.NOT_FOUND, StatusCodes.NOT_FOUND);
     return user;
-  }
+  };
 
-  async create(userBody) {
+  create = async (userBody) => {
     const newUser = new this.model.User(userBody);
     return await newUser.save();
-  }
+  };
 
-  async update(userBody, userId) {
+  update = async (userBody, userId) => {
     const updatedUser = await this.model.User.findByIdAndUpdate(
       userId,
       userBody,
@@ -29,9 +29,9 @@ module.exports = new (class UserService extends Service {
     if (!updatedUser)
       throw new AppError(ReasonPhrases.NOT_FOUND, StatusCodes.NOT_FOUND);
     return updatedUser;
-  }
+  };
 
-  async delete(userId) {
+  delete = async (userId) => {
     const session = await mongoose.startSession();
 
     try {
@@ -55,5 +55,5 @@ module.exports = new (class UserService extends Service {
     } finally {
       session.endSession();
     }
-  }
+  };
 })();

@@ -3,7 +3,7 @@ const TodoService = require("../../services/TodoService");
 const { createDTO, updateDTO } = require("../../DTOs/todoDTO");
 
 module.exports = new (class AdminTodoController {
-  getAllTodos = async (req, res, next) => {
+  getAll = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
       const data = await TodoService.getAll();
@@ -23,7 +23,17 @@ module.exports = new (class AdminTodoController {
     }
   };
 
-  createTodo = async (req, res, next) => {
+  getOne = async (req, res, next) => {
+    try {
+      const message = ReasonPhrases.OK;
+      const data = await TodoService.getOne(req.params.todoId);
+      res.status(StatusCodes.OK).json({ message, data });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  create = async (req, res, next) => {
     try {
       const todoBody = createDTO(req.body);
       const message = ReasonPhrases.OK;
@@ -34,7 +44,7 @@ module.exports = new (class AdminTodoController {
     }
   };
 
-  updateTodo = async (req, res, next) => {
+  update = async (req, res, next) => {
     try {
       const todoBody = updateDTO(req.body);
       const message = ReasonPhrases.OK;
@@ -45,7 +55,7 @@ module.exports = new (class AdminTodoController {
     }
   };
 
-  deleteTodo = async (req, res, next) => {
+  delete = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
       const data = await TodoService.delete(req.params.todoId);
