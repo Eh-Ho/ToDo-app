@@ -1,10 +1,15 @@
+const { requireFields } = require("./helpers");
+
 const createDTO = (reqBody) => {
-  const {} = reqBody;
-  return {};
+  requireFields(reqBody, ["title", "description"]);
+  const { title, description } = reqBody;
+  return { title, description };
 };
+
 const updateDTO = (reqBody) => {
-  const {} = reqBody;
-  return {};
+  requireFields(reqBody, ["title", "description", "completed"]);
+  const { title, description, completed } = reqBody;
+  return { title, description, completed };
 };
 
 module.exports = { createDTO, updateDTO };

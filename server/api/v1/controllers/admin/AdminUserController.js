@@ -25,7 +25,7 @@ module.exports = new (class AdminUserController {
 
   create = async (req, res, next) => {
     try {
-      const userBody = createDTO(req.body);
+      const userBody = adminCreateDTO(req.body);
       const message = ReasonPhrases.OK;
       const data = await UserService.create(userBody);
       res.status(StatusCodes.OK).json({ message, data });
@@ -36,7 +36,7 @@ module.exports = new (class AdminUserController {
 
   update = async (req, res, next) => {
     try {
-      const userBody = updateDTO(req.body);
+      const userBody = adminUpdateDTO(req.body);
       const message = ReasonPhrases.OK;
       const data = await UserService.update(userBody, req.params.userId);
       res.status(StatusCodes.OK).json({ message, data });
