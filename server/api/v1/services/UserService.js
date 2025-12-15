@@ -1,57 +1,59 @@
 const Service = require("./Service");
 const { ReasonPhrases, StatusCodes } = require("http-status-codes");
 const AppError = require("../../../utils/AppError");
+const { default: mongoose } = require("mongoose");
 module.exports = new (class UserService extends Service {
-  async getAllUsers() {
-    try {
-      const allUsers = await this.model.User.find({});
-      if (allUsers) return allUsers;
-    } catch (error) {
-      throw error;
-    }
+  async getAll() {
+    const allUsers = await this.model.User.find({});
+    if (allUsers) return allUsers;
   }
 
-  async getUser(userId) {
-    try {
-      const user = await this.model.User.findById(userId);
-      if (!user)
-        throw new AppError(ReasonPhrases.NOT_FOUND, StatusCodes.NOT_FOUND);
-      return user;
-    } catch (error) {
-      throw error;
-    }
+  async getOne(userId) {
+    const user = await this.model.User.findById(userId);
+    if (!user)
+      throw new AppError(ReasonPhrases.NOT_FOUND, StatusCodes.NOT_FOUND);
+    return user;
   }
 
-  async createUser(userBody) {
-    try {
-      const newUser = new this.model.User(userBody);
-      return await newUser.save();
-    } catch (error) {
-      throw error;
-    }
+  async create(userBody) {
+    const newUser = new this.model.User(userBody);
+    return await newUser.save();
   }
 
-  async updateUser(userBody, userId) {
-    try {
-      const updatedUser = await this.model.User.findByIdAndUpdate(
-        userId,
-        userBody,
-        { new: true }
-      );
-      if (!updatedUser)
-        throw new AppError(ReasonPhrases.NOT_FOUND, StatusCodes.NOT_FOUND);
-      return updatedUser;
-    } catch (error) {
-      throw error;
-    }
+  async update(userBody, userId) {
+    const updatedUser = await this.model.User.findByIdAndUpdate(
+      userId,
+      userBody,
+      { new: true }
+    );
+    if (!updatedUser)
+      throw new AppError(ReasonPhrases.NOT_FOUND, StatusCodes.NOT_FOUND);
+    return updatedUser;
   }
-  async deleteUser(userId) {
+
+  async delete(userId) {
+    const session = await mongoose.startSession();
+
     try {
-      //TODO warp it in a transction
-      await this.model.Todo.deleteMany({ userId });
-      return await this.model.User.findByIdAndDelete(userId);
+      session.startTransaction();
+
+      const user = await this.model.User.findById(userId).session(session);
+      if (!user) {
+        throw new AppError("User not found", StatusCodes.NOT_FOUND);
+      }
+
+      await this.model.Todo.deleteMany({ userId }, { session });
+      const deletedUser = await this.model.User.findByIdAndDelete(userId, {
+        session,
+      });
+
+      await session.commitTransaction();
+      return deletedUser;
     } catch (error) {
+      await session.abortTransaction();
       throw error;
+    } finally {
+      session.endSession();
     }
   }
 })();

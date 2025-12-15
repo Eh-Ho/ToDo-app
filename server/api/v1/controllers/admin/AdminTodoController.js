@@ -6,7 +6,7 @@ module.exports = new (class AdminTodoController {
   getAllTodos = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await TodoService.getAllTodos();
+      const data = await TodoService.getAll();
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -27,7 +27,7 @@ module.exports = new (class AdminTodoController {
     try {
       const todoBody = createDTO(req.body);
       const message = ReasonPhrases.OK;
-      const data = await TodoService.createTodo(todoBody, req.params.userId);
+      const data = await TodoService.create(todoBody, req.params.userId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -38,7 +38,7 @@ module.exports = new (class AdminTodoController {
     try {
       const todoBody = updateDTO(req.body);
       const message = ReasonPhrases.OK;
-      const data = await TodoService.updateTodo(todoBody, req.params.todoId);
+      const data = await TodoService.update(todoBody, req.params.todoId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -48,7 +48,7 @@ module.exports = new (class AdminTodoController {
   deleteTodo = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await TodoService.deleteTodo(req.params.todoId);
+      const data = await TodoService.delete(req.params.todoId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);

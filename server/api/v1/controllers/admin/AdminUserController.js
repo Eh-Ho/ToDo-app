@@ -6,7 +6,7 @@ module.exports = new (class AdminUserController {
   getAllUsers = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await UserService.getAllUsers();
+      const data = await UserService.getAll();
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -16,7 +16,7 @@ module.exports = new (class AdminUserController {
   getUser = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await UserService.getUser(req.params.userId);
+      const data = await UserService.getOne(req.params.userId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -27,7 +27,7 @@ module.exports = new (class AdminUserController {
     try {
       const userBody = createDTO(req.body);
       const message = ReasonPhrases.OK;
-      const data = await UserService.createUser(userBody);
+      const data = await UserService.create(userBody);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -38,7 +38,7 @@ module.exports = new (class AdminUserController {
     try {
       const userBody = updateDTO(req.body);
       const message = ReasonPhrases.OK;
-      const data = await UserService.updateUser(userBody, req.params.userId);
+      const data = await UserService.update(userBody, req.params.userId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -48,7 +48,7 @@ module.exports = new (class AdminUserController {
   deleteUser = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await UserService.deleteUser(req.params.userId);
+      const data = await UserService.delete(req.params.userId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
