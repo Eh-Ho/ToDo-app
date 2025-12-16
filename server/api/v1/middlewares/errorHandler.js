@@ -19,6 +19,11 @@ const errorHandler = (err, req, res, next) => {
     message = "Invalid ID format";
   }
 
+  if (err.expressValidationErrors) {
+    statusCode = StatusCodes.BAD_REQUEST;
+    message = err.expressValidationErrors.map((e) => e.msg).join(", ");
+  }
+
   if (err.name === "ValidationError") {
     statusCode = StatusCodes.BAD_REQUEST;
     message = Object.values(err.errors)
