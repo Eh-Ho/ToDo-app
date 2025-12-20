@@ -28,13 +28,11 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, dispatch] = useReducer(themeReducer, "system");
 
   return (
-    <>
-      <ThemeContext.Provider value={theme}>
-        <ThemeDispatchContext.Provider value={dispatch}>
-          {children}
-        </ThemeDispatchContext.Provider>
-      </ThemeContext.Provider>
-    </>
+    <ThemeContext.Provider value={theme}>
+      <ThemeDispatchContext.Provider value={dispatch}>
+        {children}
+      </ThemeDispatchContext.Provider>
+    </ThemeContext.Provider>
   );
 };
 
