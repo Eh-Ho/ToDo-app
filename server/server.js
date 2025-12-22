@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const User = require("./api/v1/models/userModel");
 const Todo = require("./api/v1/models/todoModel");
 const { errorHandler } = require("./api/v1/middlewares");
-
+const cors = require("cors");
 const mongooseUri = process.env.MONGO_URI;
 
 // db models sync
@@ -27,6 +27,14 @@ mongoose
   });
 
 const app = express();
+
+//dev front-end running on port 5173
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 
 // body parser
 app.use(bodyParser.urlencoded());

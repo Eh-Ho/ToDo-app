@@ -4,7 +4,7 @@ const userRouter = express.Router();
 
 userRouter
   .route("/todos")
-  .get(TodoController.getUserTodos())
+  .get(TodoController.getUserTodos)
   .post(TodoController.create);
 userRouter
   .route("/todo/:id")
