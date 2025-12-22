@@ -17,3 +17,16 @@ export type AuthAction =
   | { type: "logout" }
   | { type: "setUser"; user: User }
   | { type: "setToken"; token: string | null };
+
+export type LoginRequest = {
+  email: string;
+  password: string;
+};
+
+export type SignUpRequest = {
+  name: string;
+  email: string;
+  password: string;
+};
+
+export type LoginResponse = { user: User; token: string };
