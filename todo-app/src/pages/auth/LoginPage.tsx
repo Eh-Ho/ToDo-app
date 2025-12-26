@@ -26,7 +26,7 @@ const LoginPage = () => {
           <h2 className="text-content text-2xl font-bold">welcome back! 👋</h2>
         </div>
         <form
-          className="w-full  flex flex-col gap-4 items-center"
+          className="w-full flex flex-col gap-4"
           onSubmit={handleSubmit(onSubmit)}
         >
           <TextField
