@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import AuthLayout from "../layouts/AuthLayout";
+import LoginPage from "../../pages/auth/LoginPage";
 
 function Router() {
   return (
@@ -7,8 +9,8 @@ function Router() {
         {/* TODO landing page */}
         <Route path="/"></Route>
         {/* TODO auth layout wrapper */}
-        <Route>
-          <Route path="login"></Route>
+        <Route element={<AuthLayout />}>
+          <Route path="login" element={<LoginPage />}></Route>
           <Route path="signup"></Route>
         </Route>
 

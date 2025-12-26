@@ -1,1 +1,24 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #3055cf;    /* Royal blue (Sample 2 primary-500) */
+  --color-muted: #d6ddf5;      /* Icy blue gray */
+  --color-tertiary: #7c8eb6;   /* Blue-grey text */
+  --color-surface: #ffffff;    /* Pure white */
+  --color-accent: #3564fd;     /* Electric blue accent */
+  --color-secondary: #eaeefa;  /* Pale blue highlight */
+  --color-content: #0a1129;    /* Navy black text */
+  --color-background: #f8faff; /* Crisp blue-white background */
+}
+
+.dark {
+  --color-primary: #5977d9;    /* Brighter blue (Sample 2 primary-600/lighter) */
+  --color-muted: #132253;      /* Dark navy border */
+  --color-tertiary: #9daac8;   /* Muted steel text */
+  --color-surface: #0e1325;    /* Dark navy surface */
+  --color-accent: #688bfd;     /* Soft blue accent */
+  --color-secondary: #1d337c;  /* Deep blue highlight */
+  --color-content: #eff1f6;    /* Ice white text */
+  --color-background: #050815; /* Deep ocean background */
+}
