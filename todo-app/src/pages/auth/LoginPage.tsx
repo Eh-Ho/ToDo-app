@@ -23,7 +23,7 @@ const LoginPage = () => {
       <div className="flex flex-col items-center w-full gap-6">
         <div className="flex flex-col items-center">
           <img alt="logo" className="h-15 w-auto" src={logo}></img>
-          <h2 className="text-content text-2xl font-bold">welcome back! 👋</h2>
+          <h2 className="text-accent text-2xl font-bold">welcome back! 👋</h2>
         </div>
         <form
           className="w-full flex flex-col gap-4"

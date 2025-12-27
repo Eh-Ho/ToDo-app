@@ -29,7 +29,7 @@ const SignupPage = () => {
       <div className="flex flex-col w-full gap-6">
         <div className="flex flex-col items-center">
           <img className="h-20 w-auto" src={logo}></img>
-          <h2 className="font-bold text-2xl text-content">TODOIFY</h2>
+          <h2 className="font-bold text-2xl text-accent">TODOIFY</h2>
         </div>
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <TextField
