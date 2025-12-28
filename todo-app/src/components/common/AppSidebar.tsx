@@ -45,7 +45,7 @@ const AppSidebar = ({ sideOpen, setSideOpen }: AppSidebarProps) => {
           <NavLink href="#" text="Lists">
             <ListBulletIcon />
           </NavLink>
-          <NavLink href="#" text="calender">
+          <NavLink href="#" text="calendar">
             <CalendarIcon />
           </NavLink>
         </div>

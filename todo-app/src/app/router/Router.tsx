@@ -15,19 +15,15 @@ function Router() {
           <Route path="signup" element={<SignupPage />}></Route>
         </Route>
 
-        <Route>
-          <Route path="tasks" element={<AppLayout/>}>
-            <Route index /> {/* task list */}
-            <Route path=":taskId">
-              <Route path="details" />
-              <Route path="edit" />
-            </Route>
-          </Route>
-          <Route path="settings" />
+        <Route element={<AppLayout />}>
+          <Route path="today" />
+          <Route path="calendar" />
+          <Route path="lists" />
+          <Route path="tasks" />
           <Route path="profile" />
         </Route>
 
-        <Route path="*" element={<NotFound/>}/>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
