@@ -10,7 +10,6 @@ import {
   MoonIcon,
   SunIcon,
 } from "@heroicons/react/24/outline";
-import logo from "../../assets/logo with no name.png";
 
 import user from "../../assets/user.png";
 import NavLink from "../UI/NavLink";
@@ -54,32 +53,26 @@ const AppHeader = ({ sideOpen, setSideOpen }: AppHeaderProps) => {
           )}
         </Button>
       </div>
-
-      <div className="flex items-center justify-end">
-        <img src={logo} className="h-12 w-auto"></img>
-      </div>
       <div className="flex items-center">
-        <div className="hidden md:flex  items-center">
-          {theme == "dark" ? (
-            <Button onClick={() => dispatch({ type: "setLight" })}>
-              <MoonIcon className="size-5 text-tertiary mx-2" />
-            </Button>
-          ) : (
-            <Button onClick={() => dispatch({ type: "setDark" })}>
-              <SunIcon className="size-5 text-tertiary mx-2" />
-            </Button>
-          )}
-          {theme == "dark" ? (
-            <Button onClick={() => dispatch({ type: "setLight" })}>
-              <BellAlertIcon className="size-5 text-tertiary mx-2" />
-            </Button>
-          ) : (
-            <Button onClick={() => dispatch({ type: "setDark" })}>
-              <BellSlashIcon className="size-5 text-tertiary mx-2" />
-            </Button>
-          )}
-        </div>
-        <img src={user} className="h-10 w-10 rounded-full mr-5 ml-2"></img>
+        {theme == "dark" ? (
+          <Button onClick={() => dispatch({ type: "setLight" })}>
+            <MoonIcon className="size-5 text-tertiary mx-1" />
+          </Button>
+        ) : (
+          <Button onClick={() => dispatch({ type: "setDark" })}>
+            <SunIcon className="size-5 text-tertiary mx-1" />
+          </Button>
+        )}
+        {theme == "dark" ? (
+          <Button onClick={() => dispatch({ type: "setLight" })}>
+            <BellAlertIcon className="size-5 text-tertiary mx-1" />
+          </Button>
+        ) : (
+          <Button onClick={() => dispatch({ type: "setDark" })}>
+            <BellSlashIcon className="size-5 text-tertiary mx-1" />
+          </Button>
+        )}
+        <img src={user} className="h-10 w-10 rounded-full mr-5 ml-1"></img>
       </div>
     </header>
   );
