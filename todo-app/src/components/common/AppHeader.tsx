@@ -27,7 +27,7 @@ const AppHeader = ({ sideOpen, setSideOpen }: AppHeaderProps) => {
   const theme = useTheme();
   const dispatch = useThemeDispatch();
   return (
-    <header className=" w-screen h-15 bg-surface/80 shadow-sm backdrop-blur-md border-muted border-b flex items-center justify-between sticky z-50 top-0 ">
+    <header className=" w-screen h-15 bg-surface/80 shadow-sm backdrop-blur-md border-muted border-b flex items-center justify-between sticky z-30 top-0 ">
       <div className="hidden md:block ">
         <div className="flex items-center gap-6">
           <NavLink href="#" text="Today">

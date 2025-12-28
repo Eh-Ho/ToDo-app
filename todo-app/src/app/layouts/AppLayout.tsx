@@ -6,8 +6,8 @@ const AppLayout = () => {
 
   return (
     <div className="w-screen h-screen bg-background">
-      <AppHeader sideOpen = {sideOpen} setSideOpen={setSideOpen}/>
-      <AppSidebar sideOpen={sideOpen}/>
+      <AppHeader sideOpen={sideOpen} setSideOpen={setSideOpen} />
+      <AppSidebar sideOpen={sideOpen} setSideOpen={setSideOpen} />
     </div>
   );
 };
