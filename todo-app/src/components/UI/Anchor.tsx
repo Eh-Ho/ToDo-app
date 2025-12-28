@@ -1,12 +1,12 @@
-import React, { type ReactNode } from "react";
+import type {ReactNode} from "react";
 
 interface AnchorProps {
-  text : string;
-  href : string;
-  children? : ReactNode;
+  text: string;
+  href: string;
+  children?: ReactNode;
 }
 
-const Anchor = ({text, href, children}:AnchorProps) => {
+const Anchor = ({ text, href, children }: AnchorProps) => {
   return (
     <a
       href={href}
