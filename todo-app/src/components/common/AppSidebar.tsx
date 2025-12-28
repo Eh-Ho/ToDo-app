@@ -8,12 +8,16 @@ import {
 } from "@heroicons/react/24/outline";
 
 interface AppSidebarProps {
-  sideOpen : boolean;
+  sideOpen: boolean;
 }
 
-const AppSidebar = ({sideOpen} : AppSidebarProps) => {
+const AppSidebar = ({ sideOpen }: AppSidebarProps) => {
   return (
-    <div className={`bg-background/80 border-r border-muted ${sideOpen?"fixed":"hidden"} inset-y-0 pt-20 left-0 w-60 z-40`}>
+    <div
+      className={`bg-background/80 border-r border-muted ${
+        sideOpen ? "fixed" : "hidden"
+      } inset-y-0 pt-20 left-0 w-60 z-40`}
+    >
       <div className="flex flex-col w-full px-2 gap-2">
         <NavLink href="#" text="Profile">
           <UserCircleIcon />
