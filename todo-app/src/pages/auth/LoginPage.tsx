@@ -7,7 +7,7 @@ import Button from "../../components/UI/Button";
 import { useState } from "react";
 import { EnvelopeIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
-import logo from "../../assets/logo with no name.png";
+import LogoName from "../../components/UI/LogoName";
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const {
@@ -22,7 +22,7 @@ const LoginPage = () => {
     <Card>
       <div className="flex flex-col items-center w-full gap-6">
         <div className="flex flex-col items-center">
-          <img alt="logo" className="h-15 w-auto" src={logo}></img>
+          <LogoName />
           <h2 className="text-accent text-2xl font-bold">welcome back! 👋</h2>
         </div>
         <form
@@ -39,7 +39,7 @@ const LoginPage = () => {
           </TextField>
           <TextField
             placeHolder="•••••••"
-            type = {showPassword?"text":"password"}
+            type={showPassword ? "text" : "password"}
             error={errors.password?.message}
             {...register("password")}
             button={
@@ -58,7 +58,7 @@ const LoginPage = () => {
             <LockClosedIcon className="h-5 w-5 text-tertiary" />
           </TextField>
           <Button type="submit">
-            <span >Login</span>
+            <span>Login</span>
           </Button>
         </form>
       </div>

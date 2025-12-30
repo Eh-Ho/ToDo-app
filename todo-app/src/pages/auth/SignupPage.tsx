@@ -1,5 +1,4 @@
 import Card from "../../components/UI/Card";
-import logo from "../../assets/logo with no name.png";
 import TextField from "../../components/UI/textField";
 import Button from "../../components/UI/Button";
 import { useState } from "react";
@@ -12,7 +11,7 @@ import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/solid";
 import type { SignUpRequest } from "../../types/Auth";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-
+import LogoName from "../../components/UI/LogoName";
 export type SignUpForm = SignUpRequest & {
   confirmPassword: string;
 };
@@ -28,8 +27,7 @@ const SignupPage = () => {
     <Card>
       <div className="flex flex-col w-full gap-6">
         <div className="flex flex-col items-center">
-          <img className="h-20 w-auto" src={logo}></img>
-          <h2 className="font-bold text-2xl text-accent">TODOIFY</h2>
+          <LogoName />
         </div>
         <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
           <TextField
