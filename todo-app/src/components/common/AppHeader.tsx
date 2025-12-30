@@ -10,7 +10,6 @@ import {
   MoonIcon,
   SunIcon,
 } from "@heroicons/react/24/outline";
-import logo from "../../assets/logo with no name.png";
 import NavLink from "../UI/NavLink";
 import type { Dispatch, SetStateAction } from "react";
 import useTheme from "../../hooks/useTheme";
