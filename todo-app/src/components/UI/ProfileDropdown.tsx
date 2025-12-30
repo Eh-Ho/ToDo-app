@@ -49,7 +49,7 @@ const ProfileDropdown = () => {
             <p className="text-xs text-tertiary truncate">jane@example.com</p>
           </div>
 
-          <div className="py-2 flex flex-col gap-1">
+          <div className="py-2 px-1 flex flex-col gap-1">
             <Anchor href="/profile">
               <UserIcon className="h-4 w-4" />
               <span>My Profile</span>
@@ -60,7 +60,7 @@ const ProfileDropdown = () => {
             </Anchor>
           </div>
 
-          <div className="py-1 border-t border-muted">
+          <div className="py-1 px-1 border-t border-muted">
             <Button onClick={() => console.log("Logout")}>
               <ArrowRightStartOnRectangleIcon className="h-4 w-4" />
               Sign out
