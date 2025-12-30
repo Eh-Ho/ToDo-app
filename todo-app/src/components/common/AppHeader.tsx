@@ -16,6 +16,8 @@ import type { Dispatch, SetStateAction } from "react";
 import useTheme from "../../hooks/useTheme";
 import useThemeDispatch from "../../hooks/useThemeDispatch";
 import ProfileDropdown from "../UI/ProfileDropdown";
+import LogoName from "../UI/LogoName";
+
 interface AppHeaderProps {
   sideOpen: boolean;
   setSideOpen: Dispatch<SetStateAction<boolean>>;
@@ -27,8 +29,8 @@ const AppHeader = ({ sideOpen, setSideOpen }: AppHeaderProps) => {
   return (
     <header className=" w-screen h-15 bg-surface/80 shadow-sm backdrop-blur-md border-muted border-b flex items-center justify-between sticky z-30 top-0 ">
       <div className="hidden md:block ">
-        <div className="flex items-center gap-6">
-          <img src={logo} className="h-15 w-auto text-tertiary"></img>
+        <div className="flex items-center gap-6 mx-2">
+          <LogoName />
           <NavLink href="#" text="Today">
             <CheckIcon />
           </NavLink>
@@ -43,13 +45,18 @@ const AppHeader = ({ sideOpen, setSideOpen }: AppHeaderProps) => {
           </NavLink>
         </div>
       </div>
-
-      <div className="md:hidden block cursor-pointer ml-2" onClick={() => setSideOpen(!sideOpen)}>
+      <div
+        className="md:hidden block cursor-pointer ml-2"
+        onClick={() => setSideOpen(!sideOpen)}
+      >
         {sideOpen ? (
           <XMarkIcon className="h-7 w-7 text-accent"></XMarkIcon>
         ) : (
           <Bars3Icon className="h-7 w-7 text-accent"></Bars3Icon>
         )}
+      </div>
+      <div className="md:hidden">
+        <LogoName />
       </div>
       <div className="flex items-center">
         {theme == "dark" ? (
