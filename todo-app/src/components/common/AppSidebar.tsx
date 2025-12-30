@@ -19,7 +19,7 @@ const AppSidebar = ({ sideOpen, setSideOpen }: AppSidebarProps) => {
       <div
         onClick={() => setSideOpen(!sideOpen)}
         className={`
-          fixed inset-0 z-40 bg-black/20 backdrop-blur-sm transition-opacity duration-300 md:hidden
+          fixed inset-0 z-30 bg-black/20 backdrop-blur-sm transition-opacity duration-300 md:hidden
           ${
             sideOpen
               ? "opacity-100 visible"
@@ -28,14 +28,15 @@ const AppSidebar = ({ sideOpen, setSideOpen }: AppSidebarProps) => {
         `}
       />
       <div
-        className={`bg-background/80 border-r border-muted ${
-          sideOpen ? "fixed" : "hidden"
-        } inset-y-0 pt-5 left-0 w-60 z-50`}
+        className={`bg-background/80 border-r border-muted transition-transform duration-500 ease-in-out md:-translate-x-full${
+          sideOpen ? "translate-x-0" : "-translate-x-full hidden"
+        } fixed inset-y-0 pt-5 left-0 w-60 z-50 md:hidden`}
       >
-        <div className="flex flex-col w-full px-2 gap-2">
+        <div className="flex flex-col w-full px-2 gap-4">
           <NavLink href="#" text="Profile">
             <UserCircleIcon />
           </NavLink>
+          <span className="border-b border-muted"></span>
           <NavLink href="#" text="Today">
             <CheckIcon />
           </NavLink>

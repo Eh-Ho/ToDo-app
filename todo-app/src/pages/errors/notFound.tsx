@@ -15,8 +15,11 @@ const NotFound = () => {
             Sorry, we couldn’t find the page you’re looking for.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Anchor text="GO Back Home" href="#" />
-            <Anchor text="Contact Support" href="#">
+            <Anchor href="#">
+              <span>Go Back Home</span>
+            </Anchor>
+            <Anchor href="#">
+              <span>Contact Support</span>
               <ChevronRightIcon className="h-5 w-5 text-tertiary" />
             </Anchor>
           </div>

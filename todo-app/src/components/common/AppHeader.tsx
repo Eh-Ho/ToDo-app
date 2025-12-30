@@ -10,13 +10,12 @@ import {
   MoonIcon,
   SunIcon,
 } from "@heroicons/react/24/outline";
-
-import user from "../../assets/user.png";
+import logo from "../../assets/logo with no name.png";
 import NavLink from "../UI/NavLink";
-import Button from "../UI/Button";
 import type { Dispatch, SetStateAction } from "react";
 import useTheme from "../../hooks/useTheme";
 import useThemeDispatch from "../../hooks/useThemeDispatch";
+import ProfileDropdown from "../UI/ProfileDropdown";
 interface AppHeaderProps {
   sideOpen: boolean;
   setSideOpen: Dispatch<SetStateAction<boolean>>;
@@ -29,6 +28,7 @@ const AppHeader = ({ sideOpen, setSideOpen }: AppHeaderProps) => {
     <header className=" w-screen h-15 bg-surface/80 shadow-sm backdrop-blur-md border-muted border-b flex items-center justify-between sticky z-30 top-0 ">
       <div className="hidden md:block ">
         <div className="flex items-center gap-6">
+          <img src={logo} className="h-15 w-auto text-tertiary"></img>
           <NavLink href="#" text="Today">
             <CheckIcon />
           </NavLink>
@@ -44,35 +44,37 @@ const AppHeader = ({ sideOpen, setSideOpen }: AppHeaderProps) => {
         </div>
       </div>
 
-      <div className="md:hidden block">
-        <Button onClick={() => setSideOpen(!sideOpen)}>
-          {sideOpen ? (
-            <XMarkIcon className="h-7 w-7 text-accent"></XMarkIcon>
-          ) : (
-            <Bars3Icon className="h-7 w-7 text-accent"></Bars3Icon>
-          )}
-        </Button>
+      <div className="md:hidden block cursor-pointer ml-2" onClick={() => setSideOpen(!sideOpen)}>
+        {sideOpen ? (
+          <XMarkIcon className="h-7 w-7 text-accent"></XMarkIcon>
+        ) : (
+          <Bars3Icon className="h-7 w-7 text-accent"></Bars3Icon>
+        )}
       </div>
       <div className="flex items-center">
         {theme == "dark" ? (
-          <Button onClick={() => dispatch({ type: "setLight" })}>
-            <MoonIcon className="size-5 text-tertiary mx-1" />
-          </Button>
+          <MoonIcon
+            onClick={() => dispatch({ type: "setLight" })}
+            className="size-5 text-tertiary mx-4 cursor-pointer"
+          />
         ) : (
-          <Button onClick={() => dispatch({ type: "setDark" })}>
-            <SunIcon className="size-5 text-tertiary mx-1" />
-          </Button>
+          <SunIcon
+            onClick={() => dispatch({ type: "setDark" })}
+            className="size-5 text-tertiary mx-4 cursor-pointer"
+          />
         )}
         {theme == "dark" ? (
-          <Button onClick={() => dispatch({ type: "setLight" })}>
-            <BellAlertIcon className="size-5 text-tertiary mx-1" />
-          </Button>
+          <BellAlertIcon
+            onClick={() => dispatch({ type: "setLight" })}
+            className="size-5 text-tertiary mx-4 cursor-pointer"
+          />
         ) : (
-          <Button onClick={() => dispatch({ type: "setDark" })}>
-            <BellSlashIcon className="size-5 text-tertiary mx-1" />
-          </Button>
+          <BellSlashIcon
+            onClick={() => dispatch({ type: "setDark" })}
+            className="size-5 text-tertiary mx-4 cursor-pointer"
+          />
         )}
-        <img src={user} className="h-10 w-10 rounded-full mr-5 ml-1"></img>
+        <ProfileDropdown />
       </div>
     </header>
   );

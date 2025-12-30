@@ -1,18 +1,16 @@
-import type {ReactNode} from "react";
+import type { ReactNode } from "react";
 
 interface AnchorProps {
-  text: string;
   href: string;
   children?: ReactNode;
 }
 
-const Anchor = ({ text, href, children }: AnchorProps) => {
+const Anchor = ({ href, children }: AnchorProps) => {
   return (
     <a
       href={href}
-      className="flex text-sm px-3.5 py-2.5 bg-primary font-medium hover:opacity-90 transition shadow-lg  rounded-full text-white"
+      className= "flex items-center text-sm gap-2 px-4 py-2 rounded-lg text-tertiary hover:text-primary transition-colors hover:ring-2 hover:ring-accent"
     >
-      {text}
       {children}
     </a>
   );
