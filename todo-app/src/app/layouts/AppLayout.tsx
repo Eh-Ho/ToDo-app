@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import AppHeader from "../../components/common/AppHeader";
 import AppSidebar from "../../components/common/AppSidebar";
 import { useState, useEffect } from "react";
@@ -17,6 +18,7 @@ const AppLayout = () => {
     <div className="w-screen h-screen bg-background">
       <AppHeader sideOpen={sideOpen} setSideOpen={setSideOpen} />
       <AppSidebar sideOpen={sideOpen} setSideOpen={setSideOpen} />
+      <Outlet/>
     </div>
   );
 };

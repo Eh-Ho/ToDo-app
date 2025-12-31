@@ -1,5 +1,5 @@
 import Card from "../../components/UI/Card";
-import TextField from "../../components/UI/textField";
+import FormField from "../../components/UI/FormField";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import type { LoginRequest } from "../../types/Auth";
@@ -29,15 +29,15 @@ const LoginPage = () => {
           className="w-full flex flex-col gap-4"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <TextField
+          <FormField
             type="text"
             placeHolder="name@example.com"
             error={errors.email?.message}
             {...register("email")}
           >
             <EnvelopeIcon className="h-5 w-5 text-tertiary" />
-          </TextField>
-          <TextField
+          </FormField>
+          <FormField
             placeHolder="•••••••"
             type={showPassword ? "text" : "password"}
             error={errors.password?.message}
@@ -56,7 +56,7 @@ const LoginPage = () => {
             }
           >
             <LockClosedIcon className="h-5 w-5 text-tertiary" />
-          </TextField>
+          </FormField>
           <Button type="submit">
             <span>Login</span>
           </Button>
