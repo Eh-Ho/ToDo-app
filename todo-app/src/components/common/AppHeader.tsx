@@ -30,16 +30,16 @@ const AppHeader = ({ sideOpen, setSideOpen }: AppHeaderProps) => {
       <div className="hidden md:block ">
         <div className="flex items-center gap-6 mx-2">
           <LogoName />
-          <NavLink href="#" text="Today">
+          <NavLink to="/today" text="Today">
             <CheckIcon />
           </NavLink>
-          <NavLink href="#" text="Tasks">
+          <NavLink to="/tasks" text="Tasks">
             <RectangleStackIcon />
           </NavLink>
-          <NavLink href="#" text="Lists">
+          <NavLink to="/lists" text="Lists">
             <ListBulletIcon />
           </NavLink>
-          <NavLink href="#" text="calendar">
+          <NavLink to="/calendar" text="calendar">
             <CalendarIcon />
           </NavLink>
         </div>

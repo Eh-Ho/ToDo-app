@@ -33,21 +33,21 @@ const AppSidebar = ({ sideOpen, setSideOpen }: AppSidebarProps) => {
         } fixed inset-y-0 pt-5 left-0 w-60 z-50 md:hidden flex flex-col justify-between`}
       >
         <div className="flex flex-col w-full px-2 gap-4">
-          <NavLink href="#" text="Today">
+          <NavLink to="/today" text="Today">
             <CheckIcon />
           </NavLink>
-          <NavLink href="#" text="Tasks">
+          <NavLink to="/tasks" text="Tasks">
             <RectangleStackIcon />
           </NavLink>
-          <NavLink href="#" text="Lists">
+          <NavLink to="/lists" text="Lists">
             <ListBulletIcon />
           </NavLink>
-          <NavLink href="#" text="calendar">
+          <NavLink to="/calendar" text="calendar">
             <CalendarIcon />
           </NavLink>
         </div>
         <div className="border-t border-muted flex flex-col w-full px-2 gap-4 py-5">
-          <NavLink href="#" text="Profile">
+          <NavLink to="/profile" text="Profile">
             <UserCircleIcon />
           </NavLink>
         </div>
