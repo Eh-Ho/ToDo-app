@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import TodosContext from "../store/TodosContext";
+import TasksContext from "../store/TasksContext";
 
 const useTodos = () => {
-  const ctx = useContext(TodosContext);
+  const ctx = useContext(TasksContext);
   if (!ctx) throw new Error("context must be used within a provider");
   return ctx;
 };

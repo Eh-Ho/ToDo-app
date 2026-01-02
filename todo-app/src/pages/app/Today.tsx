@@ -3,9 +3,20 @@ import Button from "../../components/UI/Button";
 import TextInput from "../../components/UI/TextInput";
 import Card from "../../components/UI/Card";
 import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
-import ProgressBar from "../../components/UI/ProgressBar";
 import WelcomeSign from "../../components/UI/WelcomeSign";
+import TaskItem from "../../components/UI/TaskItem";
+import type { Task } from "../../types/Task";
+import { useState } from "react";
+
 const Today = () => {
+  const task: Task = {
+    title: "test title",
+    completed: false,
+    description: "description",
+    userId: "user id",
+    _id: "id",
+  };
+  const [testTask, setTestTask] = useState<Task>(task);
   return (
     <div className="w-full flex flex-col">
       <div className="grid grid-cols-1 md:grid-cols-2 m-10 relative">
@@ -33,7 +44,17 @@ const Today = () => {
             </div>
             <span className="border-b border-3 border-muted"></span>
 
-            <div></div>
+            <div>
+              <TaskItem
+                color="blue-500"
+                task={testTask}
+                onToggle={() =>
+                  setTestTask({ ...testTask, completed: !testTask.completed })
+                }
+                onDelete={()=>console.log(testTask._id)}
+                onEdit={()=>console.log(testTask._id)}
+              />
+            </div>
           </div>
         </Card>
         <Card>

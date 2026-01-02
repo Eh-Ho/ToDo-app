@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import TodosDispatchContext from "../store/TodosDispatchContext";
+import TasksDispatchContext from "../store/TasksDispatchContext";
 
 const useTodosDispatch = () => {
-  const ctx = useContext(TodosDispatchContext);
+  const ctx = useContext(TasksDispatchContext);
   if (!ctx) throw new Error("context must be used within a provider");
   return ctx;
 };
