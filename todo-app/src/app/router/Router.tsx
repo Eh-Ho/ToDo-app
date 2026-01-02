@@ -3,7 +3,7 @@ import AuthLayout from "../layouts/AuthLayout";
 import LoginPage from "../../pages/auth/LoginPage";
 import SignupPage from "../../pages/auth/SignupPage";
 import AppLayout from "../layouts/AppLayout";
-import NotFound from "../../pages/errors/notFound";
+import NotFound from "../../pages/errors/NotFound";
 import Today from "../../pages/app/Today";
 function Router() {
   return (
