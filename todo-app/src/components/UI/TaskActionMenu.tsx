@@ -3,7 +3,7 @@ import {
   PencilSquareIcon,
   TrashIcon,
   CalendarIcon,
-} from "@heroicons/react/24/solid";
+} from "@heroicons/react/24/outline";
 import { useState, useRef, useEffect } from "react";
 import TaskActionMenuItem from "./TaskActionMenuItem";
 
@@ -34,23 +34,21 @@ const TaskActionMenu = ({ onEdit, onDelete }: TaskActionMenuProps) => {
   return (
     <div onClick={() => setActionMenuOpen(!actionMenuOpen)}>
       {actionMenuOpen ? (
-        <div ref={menuRef} className={`flex gap-3`}>
-
+        <div ref={menuRef} className={`flex items-center gap-3 rounded-full `}>
           <TaskActionMenuItem onClick={() => onEdit}>
-            <PencilSquareIcon className="size-5 text-primary" />
+            <PencilSquareIcon className="h-5 w-auto text-accent" />
           </TaskActionMenuItem>
 
           <TaskActionMenuItem onClick={() => onEdit}>
-            <CalendarIcon className="size-5 text-primary" />
+            <CalendarIcon className="h-5 w-auto text-accent" />
           </TaskActionMenuItem>
 
           <TaskActionMenuItem onClick={() => onDelete}>
-            <TrashIcon className="size-5 text-primary" />
+            <TrashIcon className="h-5 w-auto text-red-500" />
           </TaskActionMenuItem>
-
         </div>
       ) : (
-        <EllipsisHorizontalIcon className="size-6 text-tertiary cursor-pointer transition-transform duration-500" />
+        <EllipsisHorizontalIcon className="h-5 w-auto text-content cursor-pointer transition-transform duration-500" />
       )}
     </div>
   );

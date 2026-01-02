@@ -1,3 +1,5 @@
+import { TagIcon } from "@heroicons/react/16/solid";
+
 interface TagProps {
   color:
     | "gray"
@@ -26,11 +28,10 @@ const Tag = ({ color, text }: TagProps) => {
   return (
     <span
       className={`
-        inline-flex items-center rounded-full px-2 py-1 text-xs font-medium 
-        ring-1 ring-inset /* Defines the border structure */
-        ${colorStyles[color]} /* Injects the specific color classes */
-      `}
+        inline-flex items-center rounded-full px-2 py-1 text-xs 
+        ring-1 ring-inset ${colorStyles[color]} `}
     >
+      <TagIcon className="h-4 w-auto " />
       {text}
     </span>
   );

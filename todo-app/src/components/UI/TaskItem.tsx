@@ -19,8 +19,8 @@ const TaskItem = ({
   onDelete,
 }: TaskItemProps) => {
   return (
-    <div className="flex flex-col justify-center  gap-1 p-2 items-center border-white border rounded-md shadow-md my-2 min-h-10">
-      <div className="w-full flex justify-between">
+    <div className="flex flex-col justify-center  gap-2 p-2 items-center border-white border rounded-md shadow-md my-2 min-h-10">
+      <div className="w-full flex items-center justify-between">
         <div className="inline-flex items-center gap-2 ">
           <Checkbox
             checked={task.completed}
@@ -42,7 +42,7 @@ const TaskItem = ({
         ></TaskActionMenu>
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 overflow-x-scroll max-w-full">
         <Tag color={"yellow"} text="important"></Tag>
         <Tag color={"red"} text="important"></Tag>
         <Tag color={"indigo"} text="important"></Tag>

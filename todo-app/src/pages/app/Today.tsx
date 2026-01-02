@@ -1,8 +1,11 @@
-import { PlusIcon } from "@heroicons/react/24/outline";
 import Button from "../../components/UI/Button";
 import TextInput from "../../components/UI/TextInput";
 import Card from "../../components/UI/Card";
-import { CheckCircleIcon, ClockIcon } from "@heroicons/react/24/solid";
+import {
+  CheckCircleIcon,
+  ClockIcon,
+  PlusIcon,
+} from "@heroicons/react/24/solid";
 import WelcomeSign from "../../components/UI/WelcomeSign";
 import TaskItem from "../../components/UI/TaskItem";
 import type { Task } from "../../types/Task";
@@ -51,8 +54,8 @@ const Today = () => {
                 onToggle={() =>
                   setTestTask({ ...testTask, completed: !testTask.completed })
                 }
-                onDelete={()=>console.log(testTask._id)}
-                onEdit={()=>console.log(testTask._id)}
+                onDelete={() => console.log(testTask._id)}
+                onEdit={() => console.log(testTask._id)}
               />
             </div>
           </div>
