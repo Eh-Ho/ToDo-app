@@ -5,12 +5,26 @@ const Schema = mongoose.Schema;
 const taskSchema = new Schema(
   {
     title: { type: String, required: true },
-    description: { type: String, required: true },
+    description: { type: String, required: false },
     completed: { type: Boolean, default: false },
     tags: [
       {
         text: { type: String, required: true },
-        color: { type: String, required: true, default: "blue" },
+        color: {
+          type: String,
+          required: true,
+          default: "blue",
+          enum: [
+            "gray",
+            "red",
+            "yellow",
+            "blue",
+            "green",
+            "indigo",
+            "purple",
+            "pink",
+          ],
+        },
       },
     ],
     listId: { type: Schema.Types.ObjectId, ref: "List", required: false },
