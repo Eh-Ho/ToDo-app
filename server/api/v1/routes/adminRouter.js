@@ -1,13 +1,13 @@
 const express = require("express");
-const { AdminUserController, AdminTodoController } = require("../controllers");
+const { AdminUserController, AdminTaskController } = require("../controllers");
 const {
   createUserValidation,
   updateUserValidation,
 } = require("../validations/userValidations");
 const {
-  createTodoValidation,
-  updateTodoValidation,
-} = require("../validations/todoValidations");
+  createTaskValidation,
+  updateTaskValidation,
+} = require("../validations/taskValidations");
 const Validator = require("../middlewares/validator");
 
 const adminRouter = express.Router();
@@ -23,17 +23,17 @@ adminRouter
   .put(updateUserValidation, Validator, AdminUserController.update)
   .delete(AdminUserController.delete);
 
-adminRouter.route("/todos").get(AdminTodoController.getAll);
+adminRouter.route("/tasks").get(AdminTaskController.getAll);
 
 adminRouter
-  .route("/users/:userId/todos")
-  .get(AdminTodoController.getUserTodos)
-  .post(createTodoValidation, Validator, AdminTodoController.create);
+  .route("/users/:userId/tasks")
+  .get(AdminTaskController.getUserTasks)
+  .post(createTaskValidation, Validator, AdminTaskController.create);
 
 adminRouter
-  .route("/todos/:todoId")
-  .get(AdminTodoController.getOne)
-  .put(updateTodoValidation, Validator, AdminTodoController.update)
-  .delete(AdminTodoController.delete);
+  .route("/tasks/:taskId")
+  .get(AdminTaskController.getOne)
+  .put(updateTaskValidation, Validator, AdminTaskController.update)
+  .delete(AdminTaskController.delete);
 
 module.exports = adminRouter;

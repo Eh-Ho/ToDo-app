@@ -1,6 +1,6 @@
 const { body, param } = require("express-validator");
 
-const createTodoValidation = [
+const createTaskValidation = [
   body("title")
     .trim()
     .notEmpty()
@@ -16,8 +16,8 @@ const createTodoValidation = [
     .withMessage("Description must be at least 5 characters"),
 ];
 
-const updateTodoValidation = [
-  param("todoId").isMongoId().withMessage("Invalid Todo ID format"),
+const updateTaskValidation = [
+  param("taskId").isMongoId().withMessage("Invalid Task ID format"),
 
   body("title")
     .optional()
@@ -38,4 +38,4 @@ const updateTodoValidation = [
     .toBoolean(),
 ];
 
-module.exports = { createTodoValidation, updateTodoValidation };
+module.exports = { createTaskValidation, updateTaskValidation };

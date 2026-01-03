@@ -1,8 +1,8 @@
 const User = require("../models/userModel");
-const Todo = require("../models/todoModel");
+const Task = require("../models/taskModel");
 
 module.exports = class Service {
   constructor() {
-    this.model = { User, Todo };
+    this.model = { User, Task };
   }
 };

@@ -1,15 +1,15 @@
 const express = require("express");
-const { TodoController, ProfileController } = require("../controllers");
+const { TaskController, ProfileController } = require("../controllers");
 const userRouter = express.Router();
 
 userRouter
-  .route("/todos")
-  .get(TodoController.getUserTodos())
-  .post(TodoController.create);
+  .route("/tasks")
+  .get(TaskController.getUserTasks())
+  .post(TaskController.create);
 userRouter
-  .route("/todo/:id")
-  .get(TodoController.getOne)
-  .put(TodoController.update)
-  .delete(TodoController.delete);
+  .route("/task/:id")
+  .get(TaskController.getOne)
+  .put(TaskController.update)
+  .delete(TaskController.delete);
 
 module.exports = userRouter;

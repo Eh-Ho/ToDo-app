@@ -42,7 +42,7 @@ module.exports = new (class UserService extends Service {
         throw new AppError("User not found", StatusCodes.NOT_FOUND);
       }
 
-      await this.model.Todo.deleteMany({ userId }, { session });
+      await this.model.Task.deleteMany({ userId }, { session });
       const deletedUser = await this.model.User.findByIdAndDelete(userId, {
         session,
       });

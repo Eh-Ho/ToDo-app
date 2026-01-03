@@ -1,6 +1,6 @@
 module.exports = {
   // admin
-  AdminTodoController: require("./admin/AdminTodoController"),
+  AdminTodoController: require("./admin/AdminTaskController"),
   AdminUserController: require("./admin/AdminUserController"),
 
   //public
@@ -8,6 +8,6 @@ module.exports = {
   AuthController: require("./public/AuthController"),
 
   //user
-  TodoController: require("./user/TodoController"),
+  TodoController: require("./user/TaskController"),
   ProfileController: require("./user/ProfileController"),
 };

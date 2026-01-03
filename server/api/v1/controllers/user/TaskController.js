@@ -1,11 +1,11 @@
-const TodoService = require("../../services/TodoService");
+const TaskService = require("../../services/TaskService");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
-const { createDTO, updateDTO } = require("../../DTOs/todoDTO");
-module.exports = new (class TodoController {
-  getUserTodos = async (req, res, next) => {
+const { createDTO, updateDTO } = require("../../DTOs/taskDTO");
+module.exports = new (class TaskController {
+  getUserTasks = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await TodoService.getUserTodos(req.user.id);
+      const data = await TaskService.getUserTasks(req.user.id);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -14,7 +14,7 @@ module.exports = new (class TodoController {
   getOne = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await TodoService.getOne(req.params.todoId);
+      const data = await TaskService.getOne(req.params.taskId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -23,8 +23,8 @@ module.exports = new (class TodoController {
   create = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const todoBody = createDTO(req.body);
-      const data = await TodoService.create(todoBody, req.user.id);
+      const taskBody = createDTO(req.body);
+      const data = await TaskService.create(taskBody, req.user.id);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -33,7 +33,7 @@ module.exports = new (class TodoController {
   delete = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await TodoService.delete(req.params.todoId);
+      const data = await TaskService.delete(req.params.taskId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -42,8 +42,8 @@ module.exports = new (class TodoController {
   update = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const todoBody = updateDTO(req.body);
-      const data = await TodoService.update(todoBody, req.params.todoId);
+      const taskBody = updateDTO(req.body);
+      const data = await TaskService.update(taskBody, req.params.taskId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
