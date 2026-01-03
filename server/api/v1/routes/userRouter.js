@@ -4,7 +4,7 @@ const userRouter = express.Router();
 
 userRouter
   .route("/tasks")
-  .get(TaskController.getUserTasks())
+  .get(TaskController.getUserTasks)
   .post(TaskController.create);
 userRouter
   .route("/task/:id")
