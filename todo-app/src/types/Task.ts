@@ -1,9 +1,13 @@
+import type { Tag } from "./Tag";
+
 export type Task = {
   _id: string;
   title: string;
   description: string;
   completed: boolean;
   userId: string;
+  listId?: string;
+  tags?: Tag[];
 };
 
 export type TaskAction =

@@ -22,7 +22,7 @@ const Today = () => {
   const [testTask, setTestTask] = useState<Task>(task);
   return (
     <div className="w-full flex flex-col">
-      <div className="grid grid-cols-1 md:grid-cols-2 m-10 relative">
+      <div className="grid grid-cols-1 md:grid-cols-2 m-10">
         <WelcomeSign userName="Ehsan" />
         <div className="flex items-end">
           <TextInput
@@ -35,7 +35,7 @@ const Today = () => {
           />
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-2">
         <Card>
           <div className="w-full flex flex-col">
             <div className="flex justify-between items-center">
@@ -79,7 +79,7 @@ const Today = () => {
               <h2 className=" text-lg font-bold flex items-center gap-1">
                 <CheckCircleIcon className="size-5 text-green-500" /> Completed
               </h2>
-              <span className="text-tertiary text-sm ">3 tasks completed</span>
+              <span className="text-tertiary text-sm ">3 tasks completed 🎉</span>
             </div>
             <span className="border-b border-3 border-muted"></span>
             <div></div>
