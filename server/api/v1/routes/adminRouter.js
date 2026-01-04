@@ -1,5 +1,9 @@
 const express = require("express");
-const { AdminUserController, AdminTaskController } = require("../controllers");
+const {
+  AdminUserController,
+  AdminTaskController,
+  AdminListController,
+} = require("../controllers");
 const {
   createUserValidation,
   updateUserValidation,
@@ -24,6 +28,17 @@ adminRouter
   .put(updateUserValidation, Validator, AdminUserController.update)
   .delete(AdminUserController.delete);
 
+//lists
+adminRouter.route("/lists").get(AdminListController.getAll);
+adminRouter
+  .route("/users/:userId/lists")
+  .get(AdminListController.getUserLists)
+  .post(AdminListController.create);
+adminRouter
+  .route("/lists/:listId")
+  .get(AdminListController.getOne)
+  .put(AdminListController.update)
+  .delete(AdminListController.delete);
 
 //tasks
 adminRouter.route("/tasks").get(AdminTaskController.getAll);

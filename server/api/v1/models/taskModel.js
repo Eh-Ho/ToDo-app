@@ -7,6 +7,7 @@ const taskSchema = new Schema(
     title: { type: String, required: true },
     description: { type: String, required: false },
     completed: { type: Boolean, default: false },
+    dueDate: { type: Date, required: false }, 
     tags: [
       {
         text: { type: String, required: true },
@@ -33,7 +34,7 @@ const taskSchema = new Schema(
   { timestamps: true }
 );
 
-taskSchema.index({ userId: 1 });
+taskSchema.index({ userId: 1 , dueDate: 1});
 
 const Task = mongoose.model("Task", taskSchema);
 
