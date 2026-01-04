@@ -12,6 +12,7 @@ const Validator = require("../middlewares/validator");
 
 const adminRouter = express.Router();
 
+//users
 adminRouter
   .route("/users")
   .get(AdminUserController.getAll)
@@ -23,6 +24,8 @@ adminRouter
   .put(updateUserValidation, Validator, AdminUserController.update)
   .delete(AdminUserController.delete);
 
+
+//tasks
 adminRouter.route("/tasks").get(AdminTaskController.getAll);
 
 adminRouter
