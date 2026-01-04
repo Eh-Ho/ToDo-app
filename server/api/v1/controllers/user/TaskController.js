@@ -2,7 +2,17 @@ const TaskService = require("../../services/TaskService");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
 const { createDTO, updateDTO } = require("../../DTOs/taskDTO");
 module.exports = new (class TaskController {
-  getUserTasks = async (req, res, next) => {
+  getToday = async (req, res, next) => {
+    try {
+      const message = ReasonPhrases.OK;
+      const data = await TaskService.getTodaysTasks(req.user.id);
+      res.status(StatusCodes.OK).json({ message, data });
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  getAll = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
       const data = await TaskService.getUserTasks(req.user.id);
@@ -14,7 +24,7 @@ module.exports = new (class TaskController {
   getOne = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await TaskService.getOne(req.params.taskId);
+      const data = await TaskService.getOneTask(req.params.taskId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -24,7 +34,7 @@ module.exports = new (class TaskController {
     try {
       const message = ReasonPhrases.OK;
       const taskBody = createDTO(req.body);
-      const data = await TaskService.create(taskBody, req.user.id);
+      const data = await TaskService.createTask(taskBody, req.user.id);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -33,7 +43,7 @@ module.exports = new (class TaskController {
   delete = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await TaskService.delete(req.params.taskId);
+      const data = await TaskService.deleteTask(req.params.taskId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);

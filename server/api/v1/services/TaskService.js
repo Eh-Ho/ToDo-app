@@ -3,27 +3,30 @@ const AppError = require("../../../utils/AppError");
 const Service = require("./Service");
 
 module.exports = new (class TaskService extends Service {
-  getAll = async () => {
+  getAllTasks = async () => {
     const allTasks = await this.model.Task.find({}).populate("userId");
     return allTasks;
   };
+
+  //TODO
+  getTodaysTasks = async () => {};
 
   getUserTasks = async (userId) => {
     const userTasks = await this.model.Task.find({ userId });
     return userTasks;
   };
 
-  getOne = async (taskId) => {
+  getOneTask = async (taskId) => {
     const userTasks = await this.model.Task.findById(taskId);
     return userTasks;
   };
 
-  create = async (taskBody, userId) => {
+  createTask = async (taskBody, userId) => {
     const newTask = new this.model.Task({ ...taskBody, userId });
     return await newTask.save();
   };
 
-  update = async (taskBody, taskId) => {
+  updateTask = async (taskBody, taskId) => {
     const updatedTask = await this.model.Task.findByIdAndUpdate(
       taskId,
       taskBody,
@@ -35,7 +38,7 @@ module.exports = new (class TaskService extends Service {
     return updatedTask;
   };
 
-  delete = async (taskId) => {
+  deleteTask = async (taskId) => {
     const deletedTod = await this.model.Task.findByIdAndDelete(taskId);
     if (!deletedTod) {
       throw new AppError(ReasonPhrases.NOT_FOUND, StatusCodes.NOT_FOUND);

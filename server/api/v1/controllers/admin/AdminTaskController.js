@@ -6,7 +6,7 @@ module.exports = new (class AdminTaskController {
   getAll = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await TaskService.getAll();
+      const data = await TaskService.getAllTasks();
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -26,7 +26,7 @@ module.exports = new (class AdminTaskController {
   getOne = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await TaskService.getOne(req.params.taskId);
+      const data = await TaskService.getOneTask(req.params.taskId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -37,7 +37,7 @@ module.exports = new (class AdminTaskController {
     try {
       const taskBody = createDTO(req.body);
       const message = ReasonPhrases.OK;
-      const data = await TaskService.create(taskBody, req.params.userId);
+      const data = await TaskService.createTask(taskBody, req.params.userId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -48,7 +48,7 @@ module.exports = new (class AdminTaskController {
     try {
       const taskBody = updateDTO(req.body);
       const message = ReasonPhrases.OK;
-      const data = await TaskService.update(taskBody, req.params.taskId);
+      const data = await TaskService.updateTask(taskBody, req.params.taskId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
@@ -58,7 +58,7 @@ module.exports = new (class AdminTaskController {
   delete = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await TaskService.delete(req.params.taskId);
+      const data = await TaskService.deleteTask(req.params.taskId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
