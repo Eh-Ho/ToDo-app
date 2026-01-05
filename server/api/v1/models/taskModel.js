@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const {ALLOWED_COLORS} = require("../constants")
 const Schema = mongoose.Schema;
 
 const taskSchema = new Schema(
@@ -15,16 +15,7 @@ const taskSchema = new Schema(
           type: String,
           required: true,
           default: "blue",
-          enum: [
-            "gray",
-            "red",
-            "yellow",
-            "blue",
-            "green",
-            "indigo",
-            "purple",
-            "pink",
-          ],
+          enum: ALLOWED_COLORS,
         },
       },
     ],

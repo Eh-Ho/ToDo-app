@@ -8,8 +8,23 @@ module.exports = new (class TaskService extends Service {
     return allTasks;
   };
 
-  //TODO
-  getTodaysTasks = async () => {};
+  getTodaysTasks = async (userId) => {
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const endOfDay = new Date();
+    endOfDay.setHours(23, 59, 59, 999);
+
+    const tasks = await this.model.Task.find({
+      userId,
+      dueDate: {
+        $gte: startOfDay,
+        $lte: endOfDay,
+      },
+    }).populate("listId");
+
+    return tasks;
+  };
 
   getUserTasks = async (userId) => {
     const userTasks = await this.model.Task.find({ userId });

@@ -1,8 +1,7 @@
 const { body, param } = require("express-validator");
 
-const ALLOWED_COLORS = [
-  "gray", "red", "yellow", "blue", "green", "indigo", "purple", "pink"
-];
+const { ALLOWED_COLORS } = require("../constants");
+
 
 const createTaskValidation = [
   body("title")
@@ -38,9 +37,8 @@ const createTaskValidation = [
     .isIn(ALLOWED_COLORS).withMessage(`Color must be one of: ${ALLOWED_COLORS.join(", ")}`),
 ];
 
-const updateTaskValidation = [
-  param("taskId").isMongoId().withMessage("Invalid Task ID format"),
 
+const updateTaskValidation = [
   body("title")
     .optional()
     .trim()
