@@ -53,7 +53,7 @@ module.exports = new (class TaskController {
     try {
       const message = ReasonPhrases.OK;
       const taskBody = updateDTO(req.body);
-      const data = await TaskService.update(taskBody, req.params.taskId);
+      const data = await TaskService.updateTask(taskBody, req.params.taskId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);

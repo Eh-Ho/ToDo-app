@@ -42,7 +42,7 @@ userRouter
   .post(createTaskValidation, Validator, TaskController.create);
 
 userRouter
-  .route("/task/:taskId")
+  .route("/tasks/:taskId")
   .get(taskIdValidation, Validator, TaskController.getOne)
   .put(taskIdValidation, updateTaskValidation, Validator, TaskController.update)
   .delete(taskIdValidation, Validator, TaskController.delete);
