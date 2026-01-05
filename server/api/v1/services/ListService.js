@@ -1,5 +1,5 @@
 const { ReasonPhrases, StatusCodes } = require("http-status-codes");
-const AppError = require("../../utils/AppError"); 
+const AppError = require("../../../utils/AppError"); 
 const Service = require("./Service");
 
 module.exports = new (class ListService extends Service {
