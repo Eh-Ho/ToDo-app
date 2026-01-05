@@ -1,54 +1,59 @@
-const UserService = require("../../services/UserService");
 const { StatusCodes, ReasonPhrases } = require("http-status-codes");
-const { createDTO, updateDTO } = require("../../DTOs/userDTO");
+const ListService = require("../../services/ListService");
+const { createDTO, updateDTO } = require("../../DTOs/listDTO");
 
-module.exports = new (class AdminUserController {
+module.exports = new (class AdminListController {
   getAll = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await UserService.getAllUsers();
+      const data = await ListService.getAllLists();
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
     }
   };
-
+  getUserLists = async (req, res, next) => {
+    try {
+      const message = ReasonPhrases.OK;
+      const data = await ListService.getUserLists(req.params.userId);
+      res.status(StatusCodes.OK).json({ message, data });
+    } catch (error) {
+      next(error);
+    }
+  };
   getOne = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await UserService.getOneUser(req.params.userId);
+      const data = await ListService.getOneList(req.params.listId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
     }
   };
-
   create = async (req, res, next) => {
     try {
-      const userBody = adminCreateDTO(req.body);
       const message = ReasonPhrases.OK;
-      const data = await UserService.createUser(userBody);
+      const listBody = createDTO(req.body);
+      const data = await ListService.createList(listBody, req.params.userId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);
     }
   };
-
-  update = async (req, res, next) => {
-    try {
-      const userBody = adminUpdateDTO(req.body);
-      const message = ReasonPhrases.OK;
-      const data = await UserService.updateUser(userBody, req.params.userId);
-      res.status(StatusCodes.OK).json({ message, data });
-    } catch (error) {
-      next(error);
-    }
-  };
-
   delete = async (req, res, next) => {
     try {
       const message = ReasonPhrases.OK;
-      const data = await UserService.deleteUser(req.params.userId);
+      const data = await ListService.deleteList(req.params.listId);
+      res.status(StatusCodes.OK).json({ message, data });
+    } catch (error) {
+      next(error);
+    }
+  };
+  update = async (req, res, next) => {
+    try {
+      const message = ReasonPhrases.OK;
+      const listBody = updateDTO(req.body);
+      const data = await ListService.updateList(listBody, req.params.listId);
       res.status(StatusCodes.OK).json({ message, data });
     } catch (error) {
       next(error);

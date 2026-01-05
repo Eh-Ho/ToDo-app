@@ -3,24 +3,24 @@ const { ReasonPhrases, StatusCodes } = require("http-status-codes");
 const AppError = require("../../../utils/AppError");
 const { default: mongoose } = require("mongoose");
 module.exports = new (class UserService extends Service {
-  getAll = async () => {
+  getAllUsers = async () => {
     const allUsers = await this.model.User.find({});
     if (allUsers) return allUsers;
   };
 
-  getOne = async (userId) => {
+  getOneUser = async (userId) => {
     const user = await this.model.User.findById(userId);
     if (!user)
       throw new AppError(ReasonPhrases.NOT_FOUND, StatusCodes.NOT_FOUND);
     return user;
   };
 
-  create = async (userBody) => {
+  createUser = async (userBody) => {
     const newUser = new this.model.User(userBody);
     return await newUser.save();
   };
 
-  update = async (userBody, userId) => {
+  updateUser = async (userBody, userId) => {
     const updatedUser = await this.model.User.findByIdAndUpdate(
       userId,
       userBody,
@@ -31,7 +31,7 @@ module.exports = new (class UserService extends Service {
     return updatedUser;
   };
 
-  delete = async (userId) => {
+  deleteUser = async (userId) => {
     const session = await mongoose.startSession();
 
     try {
@@ -42,7 +42,7 @@ module.exports = new (class UserService extends Service {
         throw new AppError("User not found", StatusCodes.NOT_FOUND);
       }
 
-      await this.model.Todo.deleteMany({ userId }, { session });
+      await this.model.Task.deleteMany({ userId }, { session });
       const deletedUser = await this.model.User.findByIdAndDelete(userId, {
         session,
       });

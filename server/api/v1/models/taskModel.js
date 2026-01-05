@@ -1,0 +1,32 @@
+const mongoose = require("mongoose");
+const {ALLOWED_COLORS} = require("../constants")
+const Schema = mongoose.Schema;
+
+const taskSchema = new Schema(
+  {
+    title: { type: String, required: true },
+    description: { type: String, required: false },
+    completed: { type: Boolean, default: false },
+    dueDate: { type: Date, required: false }, 
+    tags: [
+      {
+        text: { type: String, required: true },
+        color: {
+          type: String,
+          required: true,
+          default: "blue",
+          enum: ALLOWED_COLORS,
+        },
+      },
+    ],
+    listId: { type: Schema.Types.ObjectId, ref: "List", required: false },
+    userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  },
+  { timestamps: true }
+);
+
+taskSchema.index({ userId: 1 , dueDate: 1});
+
+const Task = mongoose.model("Task", taskSchema);
+
+module.exports = Task;

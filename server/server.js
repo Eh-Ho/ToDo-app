@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const APIRouter = require("./api/v1/routes/index");
 const bodyParser = require("body-parser");
 const User = require("./api/v1/models/userModel");
-const Todo = require("./api/v1/models/todoModel");
+const Task = require("./api/v1/models/taskModel");
+const List = require("./api/v1/models/listModel");
 const { errorHandler } = require("./api/v1/middlewares");
 const cors = require("cors");
 const mongooseUri = process.env.MONGO_URI;
@@ -12,8 +13,12 @@ const mongooseUri = process.env.MONGO_URI;
 User.syncIndexes().then(() => {
   console.log("User Indexes are now synced!");
 });
-Todo.syncIndexes().then(() => {
-  console.log("Todo Indexes are now synced!");
+Task.syncIndexes().then(() => {
+  console.log("Task Indexes are now synced!");
+});
+
+List.syncIndexes().then(() => {
+  console.log("List Indexes are now synced!");
 });
 
 // db connection

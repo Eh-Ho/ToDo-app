@@ -1,13 +1,14 @@
 module.exports = {
   // admin
-  AdminTodoController: require("./admin/AdminTodoController"),
+  AdminTaskController: require("./admin/AdminTaskController"),
   AdminUserController: require("./admin/AdminUserController"),
-
+  AdminListController: require("./admin/AdminListController"),
   //public
   HomeController: require("./public/HomeController"),
   AuthController: require("./public/AuthController"),
 
   //user
-  TodoController: require("./user/TodoController"),
+  TaskController: require("./user/TaskController"),
   ProfileController: require("./user/ProfileController"),
+  ListController: require("./user/ListController"),
 };
